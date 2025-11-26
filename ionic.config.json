@@ -1,0 +1,7 @@
+{
+  "name": "MySalesBook",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
