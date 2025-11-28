@@ -284,11 +284,11 @@ export class HomePage implements OnInit, AfterViewInit {
 
   // Quick Actions
   addSale() {
-    this.router.navigate(['/tabs/add-sales']);
+    this.router.navigate(['/tabs/sales']);
   }
 
   addExpense() {
-    this.router.navigate(['/tabs/add-expenses']);
+    this.router.navigate(['/tabs/expenses']);
   }
 
   viewHistory() {

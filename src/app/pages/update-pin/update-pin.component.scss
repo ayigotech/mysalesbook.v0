@@ -1,6 +1,7 @@
 // update-pin.component.scss
 .update-pin-content {
     --background: linear-gradient(-135deg, #0d1c23 0%, #081e29 100%);
+    --background: linear-gradient(-135deg, white 0%, white 100%);
     --padding-top: 1rem;
     --padding-bottom: 2rem;
     --padding-start: 1rem;
@@ -86,13 +87,14 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid #081e29;
     transition: all 0.3s ease;
+    // background: linear-gradient(-135deg, #0d1c23 0%, #081e29 100%);
 }
 
 .pin-dot.filled {
     background: #bde079e1;
-    border-color: #bde079e1;
+    border-color: #cf7e04f4;
 }
 
 .error-message {
@@ -136,6 +138,7 @@
 
 .keypad-btn {
     background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(-135deg, #2c3438 0%, #081e29 100%);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
@@ -180,7 +183,7 @@
 
 .security-tips h4 {
     margin: 0 0 1rem 0;
-    color: #bde079e1;
+    color: #c64e04e1;
     font-size: 1rem;
 }
 
