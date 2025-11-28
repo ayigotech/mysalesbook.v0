@@ -119,6 +119,8 @@
 
 .summary-card {
     background: #ffffff;
+    background: rgba(5, 150, 105, 0.1);
+    background: linear-gradient(-135deg, rgba(5, 150, 105, 0.1) 80%, #34d1094d 20%);
     border: 1px solid #f1f5f9;
     border-radius: 16px;
     padding: 1.25rem;
@@ -241,6 +243,7 @@
 .action-btn {
     background: #ffffff;
     border: 1px solid #f1f5f9;
+    background: linear-gradient(-135deg, #ffffff 80%, #cad1094d 20%);
     border-radius: 16px;
     padding: 1.25rem 1rem;
     /* Reduced padding */
@@ -366,6 +369,7 @@
 
 .stat-item {
     background: #ffffff;
+    background: linear-gradient(-135deg, #cad10933 80%, #cad1094d 20%);
     border: 1px solid #f1f5f9;
     border-radius: 12px;
     padding: 1rem;

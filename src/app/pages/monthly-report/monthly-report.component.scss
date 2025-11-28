@@ -276,7 +276,8 @@
 }
 
 .metric-card.profit-card {
-    border-left: 4px solid #059669;
+    border-left: 4px solid #a0910697;
+    background: rgba(5, 150, 105, 0.1);
 }
 
 .metric-icon {
@@ -340,7 +341,7 @@
 }
 
 .metric-item {
-    background: #ffffff;
+    background: linear-gradient(-135deg, #cad1094d 80%, #34d1094d 20%);
     border: 1px solid #f1f5f9;
     border-radius: 12px;
     padding: 1rem;
@@ -548,6 +549,7 @@
 
 .stat-item {
     background: #ffffff;
+    background: linear-gradient(-135deg, #cad1094d 80%, #34d1094d 20%);
     border: 1px solid #f1f5f9;
     border-radius: 12px;
     padding: 1rem;

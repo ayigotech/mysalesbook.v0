@@ -158,6 +158,13 @@ export class HomePage implements OnInit, AfterViewInit {
     await modal.present();
   }
 
+  
+  gotoOnbording(){
+    this.router.navigate(['/onboarding'])
+  }
+
+
+
   ngAfterViewInit() {
     // Wait a bit for data to load before creating chart
     setTimeout(() => {

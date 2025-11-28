@@ -112,8 +112,8 @@
 }
 
 .slide-title {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 300;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, #bde079e1, #FF9800);
     -webkit-background-clip: text;
@@ -123,10 +123,10 @@
 }
 
 .slide-description {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.6;
     color: rgb(18, 16, 16);
-    font-weight: 400;
+    font-weight: 300;
     // font-family: 'Inter', sans-serif;
 }
 
@@ -184,7 +184,7 @@
     padding: 0.8rem 1.5rem;
     border-radius: 12px;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 300;
     // font-family: 'Inter', sans-serif;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -203,7 +203,7 @@
     padding: 0.8rem 2rem;
     border-radius: 12px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 300;
     font-family: 'Inter', sans-serif;
     box-shadow: 0 4px 20px rgba(189, 224, 121, 0.3);
     transition: all 0.3s ease;

@@ -14,9 +14,12 @@
                     </button>
             <h1 class="page-title">MySalesBook</h1>
             <div class="header-actions">
-                <button class="fab" (click)="showInsight()">
+                <!-- <button class="fab" (click)="showInsight()">
                 <ion-icon name="trending-up-outline"></ion-icon>
-            </button>
+                </button> -->
+                <button class="fab" (click)="gotoOnbording()">
+                <ion-icon name="trending-up-outline"></ion-icon>
+                </button>
             </div>
         </div>
     </div>
@@ -30,7 +33,7 @@
             </div>
             <div class="card-content">
                 <h3 class="card-title">Today's Sales</h3>
-                <p class="card-amount">GHS {{formattedTodaySales}}</p>
+                <p class="card-amount">{{formattedTodaySales}}</p>
                 <!-- <span class="card-trend positive">+2.5%</span> -->
             </div>
         </div>
@@ -42,7 +45,7 @@
             </div>
             <div class="card-content">
                 <h3 class="card-title">Today's Expenses</h3>
-                <p class="card-amount">GHS {{formattedTodayExpenses}}</p>
+                <p class="card-amount">{{formattedTodayExpenses}}</p>
                 <!-- <span class="card-trend negative">-1.2%</span> -->
             </div>
         </div>
@@ -54,7 +57,7 @@
             </div>
             <div class="card-content">
                 <h3 class="card-title">Net Profit</h3>
-                <p class="card-amount">GHS {{formattedNetProfit}}</p>
+                <p class="card-amount">{{formattedNetProfit}}</p>
                 <!-- <span class="card-trend positive">+15.3%</span> -->
             </div>
         </div>

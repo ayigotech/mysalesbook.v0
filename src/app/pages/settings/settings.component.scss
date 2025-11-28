@@ -36,9 +36,9 @@
 
 .page-title {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 300;
     margin: 0;
-    background: linear-gradient(135deg, #bde079e1, #FF9800);
+    background: linear-gradient(135deg, #121310e1, #FF9800);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -53,9 +53,9 @@
 
 .section-title {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 200;
     margin-bottom: 1rem;
-    color: #bde079e1;
+    color: #2f3426e1;
 }
 
 .actions-list {
@@ -66,6 +66,7 @@
 
 .action-item {
     background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(-135deg, #cad1094d 80%, #34d1094d 20%);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(200, 148, 4, 0.2);
     border-radius: 16px;
@@ -109,7 +110,7 @@
 
 .action-title {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 300;
     margin-bottom: 0.25rem;
 }
 
