@@ -1,0 +1,479 @@
+// add-expenses.component.scss
+.add-expenses-content {
+    --padding-top: 1rem;
+    --padding-bottom: 5rem;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --background: linear-gradient(-135deg, #0d1c23 80%, #081e29 20%);
+}
+
+.select-category {
+    --background: linear-gradient(-135deg, #0d1c23 80%, #081e29 20%);
+}
+
+
+/* Header */
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF9800;
+    font-size: 1.2rem;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, #FF9800, #FF5722);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.save-btn {
+    background: #FF9800;
+    border: none;
+    color: #081017;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.save-btn:disabled {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.save-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+
+/* Info Banner */
+
+.info-banner {
+    background: rgba(255, 152, 0, 0.1);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.info-icon {
+    color: #FF9800;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.info-title {
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.info-text {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+
+/* Form */
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 10px;
+}
+
+.input-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+
+/* Amount Input */
+
+.amount-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 1rem;
+    font-weight: 600;
+    color: #FF9800;
+    z-index: 1;
+}
+
+.amount-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1rem 1rem 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.amount-input:focus {
+    border-color: #FF9800;
+    outline: none;
+}
+
+.input-error {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+
+/* Quick Amounts */
+
+.quick-amounts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.quick-amount-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.quick-amount-btn.active {
+    background: #FF9800;
+    color: #081017;
+    border-color: #FF9800;
+}
+
+.quick-amount-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* DateTime & Category Select */
+
+.datetime-display,
+.category-select {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.datetime-display:active,
+.category-select:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(0.98);
+}
+
+.datetime-text,
+.category-text {
+    flex: 1;
+}
+
+.chevron {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+
+/* Text Inputs */
+
+.text-input,
+.notes-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.text-input:focus,
+.notes-input:focus {
+    border-color: #FF9800;
+    outline: none;
+}
+
+.notes-input {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+
+/* Payment Methods */
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.payment-method-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.8rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.payment-method-btn.active {
+    background: #FF9800;
+    color: #081017;
+    border-color: #FF9800;
+}
+
+.payment-method-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Recent Expenses */
+
+.recent-expenses {
+    margin-top: 2rem;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.recent-expenses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.recent-expense-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.recent-expense-item:active {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(0.98);
+}
+
+.recent-amount {
+    font-weight: 700;
+    color: #FF9800;
+    font-size: 1.1rem;
+}
+
+.recent-details {
+    flex: 1;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.recent-vendor {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.recent-category {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    background: rgba(255, 152, 0, 0.2);
+    color: #FF9800;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    align-self: flex-start;
+}
+
+.recent-time {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.swipe-action {
+    position: absolute;
+    right: -80px;
+    top: 0;
+    bottom: 0;
+    background: #FF9800;
+    color: #081017;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    font-weight: 600;
+    transition: right 0.3s ease;
+}
+
+.recent-expense-item.swiping .swipe-action {
+    right: 0;
+}
+
+
+/* Category Modal */
+
+.category-options {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-option {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.category-option.selected {
+    background: #FF9800;
+    color: #081017;
+    border-color: #FF9800;
+}
+
+.category-option:active {
+    transform: scale(0.98);
+}
+
+
+/* FAB Save */
+
+.fab-save {
+    position: fixed;
+    bottom: 80px;
+    right: 1.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.fab-save.active {
+    background: #FF9800;
+    border-color: #FF9800;
+    color: #081017;
+    box-shadow: 0 8px 32px rgba(255, 152, 0, 0.3);
+}
+
+.fab-save.active:active {
+    transform: scale(0.9);
+}
+
+
+/* Light Mode Support */
+
+:host-context(.light-mode) .back-btn {
+    background: rgba(8, 16, 23, 0.05);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+:host-context(.light-mode) .amount-input,
+:host-context(.light-mode) .text-input,
+:host-context(.light-mode) .notes-input,
+:host-context(.light-mode) .datetime-display,
+:host-context(.light-mode) .category-select {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+:host-context(.light-mode) .quick-amount-btn,
+:host-context(.light-mode) .payment-method-btn {
+    background: rgba(8, 16, 23, 0.05);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+:host-context(.light-mode) .recent-expense-item {
+    background: rgba(8, 16, 23, 0.05);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+
+/* Responsive */
+
+@media (max-width: 380px) {
+    .quick-amounts {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .payment-methods {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .page-title {
+        font-size: 1.3rem;
+    }
+}

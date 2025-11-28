@@ -1,20 +1,188 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <div class="header-content" data-aos="fade-down">
+            <div class="app-info">
+                <h1 class="app-title">
+                    <button class="logout" (click)="logout()">
+                    <ion-icon slot=""name="log-out"></ion-icon>
+                    </button> MySalesBook
+                </h1>
+            </div>
+            <button class="fab" (click)="showInsight()">
+                <ion-icon name="trending-up-outline"></ion-icon>
+            </button>
+        </div>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [class.dark-mode]="isDarkMode" [class.light-mode]="!isDarkMode" class="home-content" fullscreen>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <!-- Quick Summary Cards -->
+    <div class="summary-cards">
+        <!-- Today's Sales Card -->
+        <div class="summary-card sales-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon">
+                <ion-icon name="cash-outline"></ion-icon>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Today's Sales</h3>
+                <p class="card-amount">GHS {{formattedTodaySales}}</p>
+                <!-- <span class="card-trend positive">+2.5%</span> -->
+            </div>
+        </div>
+
+        <!-- Today's Expenses Card -->
+        <div class="summary-card expenses-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-icon">
+                <ion-icon name="receipt-outline"></ion-icon>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Today's Expenses</h3>
+                <p class="card-amount">GHS {{formattedTodayExpenses}}</p>
+                <!-- <span class="card-trend negative">-1.2%</span> -->
+            </div>
+        </div>
+
+        <!-- Net Profit Card -->
+        <div class="summary-card profit-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-icon">
+                <ion-icon name="trending-up-outline"></ion-icon>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Net Profit</h3>
+                <p class="card-amount">GHS {{formattedNetProfit}}</p>
+                <!-- <span class="card-trend positive">+15.3%</span> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="quick-actions" data-aos="zoom-in">
+        <h2 class="section-title">Quick Actions</h2>
+        <div class="action-buttons">
+            <button class="action-btn" (click)="addSale()" data-aos="flip-left" data-aos-delay="100">
+        <div class="action-icon">
+          <ion-icon name="add-circle"></ion-icon>
+        </div>
+        <span>Add Sale</span>
+      </button>
+
+            <button class="action-btn" (click)="addExpense()" data-aos="flip-left" data-aos-delay="200">
+        <div class="action-icon">
+          <ion-icon name="remove-circle"></ion-icon>
+        </div>
+        <span>Add Expense</span>
+      </button>
+
+            <!-- <button class="action-btn" (click)="viewHistory()" data-aos="flip-left" data-aos-delay="300">
+        <div class="action-icon">
+          <ion-icon name="time"></ion-icon>
+        </div>
+        <span>View History</span>
+      </button>
+
+     <button class="action-btn" (click)="monthlyReport()" data-aos="flip-left" data-aos-delay="400">
+        <div class="action-icon">
+          <ion-icon name="document-text"></ion-icon>
+        </div>
+        <span>Monthly Report</span>
+      </button> -->
+        </div>
+    </div>
+
+    <!-- Sales Chart -->
+    <div class="chart-section">
+        <div class="chart-header">
+            <h2 class="section-title">Sales Overview</h2>
+            <div class="chart-filters">
+                <button class="filter-btn" [class.active]="selectedFilter === '7days'" (click)="updateFilter('7days')" data-aos="zoom-in" data-aos-delay="100">
+        7 Days
+      </button>
+                <button class="filter-btn" [class.active]="selectedFilter === '30days'" (click)="updateFilter('30days')" data-aos="zoom-in" data-aos-delay="200">
+        30 Days
+      </button>
+                <button class="filter-btn" [class.active]="selectedFilter === 'custom'" (click)="updateFilter('custom')" data-aos="zoom-in" data-aos-delay="300">
+        Custom
+      </button>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas #salesChart></canvas>
+        </div>
+
+        <div class="chart-stats">
+            <div class="stat-item">
+                <span class="stat-label">Total</span>
+                <span class="stat-value">{{formatCurrency(getTotalSales())}}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Average</span>
+                <span class="stat-value">{{formatCurrency(getAverageSales())}}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Highest</span>
+                <span class="stat-value">{{formatCurrency(getHighestSale())}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="recent-transactions">
+        <div class="section-header">
+            <h2 class="section-title">Recent Transactions</h2>
+            <button class="view-all-btn" (click)="viewHistory()">See All</button>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="loading-state">
+            <ion-spinner name="crescent"></ion-spinner>
+            <p>Loading transactions...</p>
+        </div>
+
+        <!-- Transactions List -->
+        <div class="transactions-list" *ngIf="!isLoading">
+            <div class="transaction-item" *ngFor="let transaction of recentTransactions; let i = index" (swipe)="onSwipe($event, transaction)" (click)="viewHistory()">
+
+                <div class="transaction-icon" [class.sale]="transaction.type === TransactionType.SALE" [class.expense]="transaction.type === TransactionType.EXPENSE">
+                    <ion-icon [name]="transaction.type === TransactionType.SALE ? 'arrow-up' : 'arrow-down'"></ion-icon>
+                </div>
+
+                <div class="transaction-details">
+                    <h4 class="transaction-title">{{getTransactionDisplayName(transaction)}}</h4>
+                    <p class="transaction-time">{{getTimeAgo(transaction.datetime)}}</p>
+                    <p class="transaction-category" *ngIf="getTransactionCategory(transaction)">
+                        {{getTransactionCategory(transaction)}}
+                    </p>
+                </div>
+
+                <div class="transaction-amount" [class.sale]="transaction.type === TransactionType.SALE" [class.expense]="transaction.type === TransactionType.EXPENSE">
+                    <span>
+                    {{transaction.type === TransactionType.SALE ? '+' : '-'}} 
+                    {{formatCurrency(transaction.amount)}}
+                </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="!isLoading && recentTransactions.length === 0" class="empty-state">
+            <div class="empty-icon">
+                <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <h3>No Recent Transactions</h3>
+            <p>Your recent transactions will appear here</p>
+            <button class="add-first-btn" (click)="addSale()">
+            <ion-icon name="add"></ion-icon>
+            Add Your First Transaction
+        </button>
+        </div>
+    </div>
+
+
+
 </ion-content>

@@ -1,0 +1,42 @@
+<!-- settings.component.html -->
+<ion-content class="settings-content" fullscreen>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <!-- <button class="back-btn" (click)="goBack()">
+              <ion-icon name="arrow-back"></ion-icon>
+            </button> -->
+            <h1 class="page-title">Settings</h1>
+            <div class="header-actions">
+                <!-- Optional: Add future actions here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Actions -->
+    <div class="settings-section">
+        <div class="section-title">Security & Data</div>
+
+        <div class="actions-list">
+            <div *ngFor="let action of settingsActions" class="action-item" (click)="navigateTo(action.route)">
+                <div class="action-icon" [class]="action.color">
+                    <ion-icon [name]="action.icon"></ion-icon>
+                </div>
+
+                <div class="action-content">
+                    <div class="action-title">{{action.title}}</div>
+                    <div class="action-description">{{action.description}}</div>
+                </div>
+
+                <div class="action-arrow">
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Sections Placeholder -->
+    <div class="future-section">
+        <p class="future-text">More settings coming soon...</p>
+    </div>
+</ion-content>

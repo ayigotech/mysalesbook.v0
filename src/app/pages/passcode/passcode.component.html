@@ -1,0 +1,61 @@
+<!-- passcode.component.html -->
+<ion-content class="passcode-content" fullscreen>
+    <div class="passcode-container">
+        <!-- App Logo/Header -->
+        <div class="app-header">
+            <h1 class="app-title">MySalesBook</h1>
+            <p class="app-subtitle">Sales & Expense Tracker</p>
+        </div>
+
+        <!-- PIN Display -->
+        <div class="pin-section">
+            <div class="pin-title">
+                {{ isSettingUp ? 'Set up your 4-digit PIN' : 'Enter your PIN' }}
+            </div>
+            <div class="pin-display">
+                <div class="pin-dots">
+                    <div *ngFor="let filled of getPinDots(); let i = index" class="pin-dot" [class.filled]="filled"></div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" *ngIf="showError">
+                <ion-icon name="warning"></ion-icon>
+                {{ errorMessage }}
+            </div>
+        </div>
+
+        <!-- Keypad -->
+        <div class="keypad-section">
+            <div class="keypad-grid">
+                <button *ngFor="let digit of [1,2,3,4,5,6,7,8,9]" class="keypad-btn" (click)="addDigit(digit)">
+          {{ digit }}
+        </button>
+
+                <!-- Empty space -->
+                <div class="keypad-empty"></div>
+
+                <!-- Zero button -->
+                <button class="keypad-btn" (click)="addDigit(0)">
+          0
+        </button>
+
+                <!-- Backspace -->
+                <button class="keypad-btn backspace" (click)="removeDigit()">
+          <ion-icon name="backspace"></ion-icon>
+        </button>
+            </div>
+        </div>
+
+        <!-- Setup Info -->
+        <div class="setup-info" *ngIf="isSettingUp">
+            <p>🔒 Your PIN secures your business data</p>
+            <p>Default PIN: 4321 (you can change it later in settings)</p>
+        </div>
+
+        <!-- Skip Option (only for development) -->
+        <!-- <div class="skip-option">
+      <button class="skip-btn" (click)="skipAuth()">Skip for now</button>
+    </div> -->
+    </div>
+</ion-content>

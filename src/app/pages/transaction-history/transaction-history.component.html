@@ -1,0 +1,115 @@
+<!-- transaction-history.component.html -->
+<ion-content class="history-content" fullscreen>
+
+    <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <button class="back-btn" (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+            <h1 class="page-title">Daily Cashbook</h1>
+            <div class="header-actions">
+                <button class="export-btn" (click)="exportDailySummary()">
+          <ion-icon name="share"></ion-icon>
+        </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Summary Cards -->
+    <div class="daily-summaries">
+        <div *ngFor="let summary of dailySummaries; let i = index" class="summary-card aos-item" [style.animation-delay]="i * 0.1 + 's'">
+            <div class="summary-date">{{formatDate(summary.date)}}</div>
+            <div class="summary-stats">
+                <div class="stat">
+                    <span class="stat-label">Sales</span>
+                    <span class="stat-value sales">{{formatCurrency(summary.totalSales)}}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Expenses</span>
+                    <span class="stat-value expenses">{{formatCurrency(summary.totalExpenses)}}</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Profit</span>
+                    <span class="stat-value profit" [class.negative]="summary.netProfit < 0">
+            {{formatCurrency(summary.netProfit)}}
+          </span>
+                </div>
+            </div>
+            <div class="transaction-count">
+                {{summary.transactionCount}} transactions
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="filters-section">
+        <div class="filter-buttons">
+            <button *ngFor="let filter of ['today', 'yesterday', 'week', 'all']" class="filter-btn" [class.active]="selectedFilter === filter" (click)="selectedFilter = filter; onFilterChange()">
+        {{filter === 'today' ? 'Today' : 
+          filter === 'yesterday' ? 'Yesterday' : 
+          filter === 'week' ? 'This Week' : 'All'}}
+      </button>
+        </div>
+
+        <div class="search-container">
+            <ion-icon name="search" class="search-icon"></ion-icon>
+            <input type="text" class="search-input" placeholder="Search transactions..." [(ngModel)]="searchQuery" (input)="onSearchChange()">
+        </div>
+    </div>
+
+    <!-- Transaction List -->
+    <div class="transactions-section">
+        <div class="section-title">Transaction History</div>
+
+        <div class="transactions-list">
+            <div *ngFor="let transaction of filteredTransactions; let i = index" class="transaction-item aos-item" [style.animation-delay]="i * 0.05 + 's'" (swipe)="onSwipeTransaction($event, transaction)">
+
+                <div class="transaction-icon" [class.sale]="transaction.type === TransactionType.SALE" [class.expense]="transaction.type === TransactionType.EXPENSE">
+                    <ion-icon [name]="transaction.type === TransactionType.SALE ? 'arrow-up' : 'arrow-down'"></ion-icon>
+                </div>
+
+                <div class="transaction-details">
+                    <div class="transaction-main">
+                        <span class="transaction-name">{{getTransactionDisplayName(transaction)}}</span>
+                        <span class="transaction-amount" [class.sale]="transaction.type === TransactionType.SALE" [class.expense]="transaction.type === TransactionType.EXPENSE">
+                        {{transaction.type === TransactionType.SALE ? '+' : '-'}} {{formatCurrency(transaction.amount)}}
+                    </span>
+                    </div>
+                    <div class="transaction-meta">
+                        <span class="transaction-desc">{{getTransactionDescription(transaction)}}</span>
+                        <span class="transaction-time">{{formatTime(transaction.datetime)}}</span>
+                    </div>
+                    <div class="transaction-category" *ngIf="getTransactionCategory(transaction)">
+                        {{getTransactionCategory(transaction)}}
+                    </div>
+                </div>
+
+                <div class="transaction-actions">
+                    <button class="action-btn edit" (click)="editTransaction(transaction); $event.stopPropagation()">
+                    <ion-icon name="create"></ion-icon>
+                </button>
+                    <button class="action-btn delete" (click)="deleteTransaction(transaction); $event.stopPropagation()">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+                </div>
+
+                <div class="swipe-delete">Delete</div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="noTransactionsFound" class="empty-state">
+            <div class="empty-icon">
+                <ion-icon name="document-text"></ion-icon>
+            </div>
+            <h3>No transactions found</h3>
+            <p>{{emptyStateMessage}}</p>
+        </div>
+    </div>
+</ion-content>

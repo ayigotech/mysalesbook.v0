@@ -1,0 +1,371 @@
+.splash-content {
+    // --background: linear-gradient(135deg, #081017 90%, #030d12 10%);
+    --background: linear-gradient(135deg, #0d1c23 80%, #0d1c23 20%);
+    position: relative;
+    overflow: hidden;
+}
+
+.splash-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="60" cy="60" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+/* Glass effect for the main container */
+
+.splash-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    z-index: -1;
+}
+
+.progress-container {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.outer-circle {
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #bde079e1;
+    border-right: 2px solid #FF9800;
+    border-radius: 50%;
+    animation: spin-counter-clockwise 1.5s linear infinite;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(16, 32, 45, 0.2);
+}
+
+.inner-circle {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #FF9800;
+    border-right: 2px solid #10202de1;
+    border-radius: 50%;
+    animation: spin-clockwise 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.finance-icon {
+    font-size: 0.8rem;
+    color: #10202de1;
+    animation: bounce 2s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.app-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #bde079e1 50%, #FF9800 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+    // font-family: 'Inter', sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-description {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    // font-family: 'Inter', sans-serif;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.powered-by {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    opacity: 0.9;
+    line-height: 1.3;
+    margin: 30px;
+    // font-family: 'Inter', sans-serif;
+}
+
+.company-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    line-height: 1.3;
+    // font-family: 'Inter', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 32px rgba(16, 32, 45, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.company-logo:hover {
+    transform: scale(1.03);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px rgba(16, 32, 45, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+@keyframes spin-counter-clockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes spin-clockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+    40% {
+        transform: translateY(-5px) scale(1.1);
+    }
+    60% {
+        transform: translateY(-3px) scale(1.05);
+    }
+}
+
+
+/* Tablet Responsive */
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .splash-container {
+        padding: 1.5rem;
+    }
+    .outer-circle {
+        width: 5rem;
+        height: 5rem;
+        border-width: 3px;
+    }
+    .inner-circle {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-width: 2px;
+    }
+    .finance-icon {
+        font-size: 1rem;
+    }
+    .app-name {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+    .app-description {
+        font-size: 1rem;
+    }
+    .powered-by {
+        font-size: 0.85rem;
+    }
+    .company-logo {
+        font-size: 0.9rem;
+        padding: 1.2rem 1.8rem;
+    }
+}
+
+
+/* Desktop Responsive */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .splash-container {
+        padding: 2rem;
+    }
+    .outer-circle {
+        width: 6rem;
+        height: 6rem;
+        border-width: 3px;
+    }
+    .inner-circle {
+        width: 3rem;
+        height: 3rem;
+        border-width: 2px;
+    }
+    .finance-icon {
+        font-size: 1.2rem;
+    }
+    .app-name {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .app-description {
+        font-size: 1.1rem;
+    }
+    .powered-by {
+        font-size: 0.9rem;
+    }
+    .company-logo {
+        font-size: 1rem;
+        padding: 1.5rem 2rem;
+    }
+}
+
+
+/* Large Desktop Responsive */
+
+@media (min-width: 1025px) {
+    .splash-container {
+        padding: 2.5rem;
+    }
+    .outer-circle {
+        width: 7rem;
+        height: 7rem;
+        border-width: 4px;
+    }
+    .inner-circle {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-width: 3px;
+    }
+    .finance-icon {
+        font-size: 1.4rem;
+    }
+    .app-name {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .app-description {
+        font-size: 1.2rem;
+    }
+    .powered-by {
+        font-size: 1rem;
+    }
+    .company-logo {
+        font-size: 1.1rem;
+        padding: 1.8rem 2.2rem;
+        gap: 0.8rem;
+    }
+}
+
+
+/* Mobile Optimizations */
+
+@media (max-width: 380px) {
+    .splash-container {
+        padding: 0.8rem;
+    }
+    .progress-container {
+        margin-bottom: 1.2rem;
+    }
+    .outer-circle {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-width: 2px;
+    }
+    .inner-circle {
+        width: 1.75rem;
+        height: 1.75rem;
+        border-width: 1.5px;
+    }
+    .finance-icon {
+        font-size: 0.7rem;
+    }
+    .app-name {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .app-description {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    .powered-by {
+        font-size: 0.7rem;
+    }
+    .company-logo {
+        font-size: 0.75rem;
+        padding: 0.8rem 1rem;
+        gap: 0.4rem;
+        border-radius: 12px;
+    }
+}
+
+
+/* Landscape Orientation Support */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .splash-container {
+        padding: 1rem;
+        height: auto;
+        min-height: 100vh;
+    }
+    .progress-container {
+        margin-bottom: 1rem;
+    }
+    .outer-circle {
+        width: 3rem;
+        height: 3rem;
+    }
+    .inner-circle {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .finance-icon {
+        font-size: 0.6rem;
+    }
+    .app-name {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+    .app-description {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+}

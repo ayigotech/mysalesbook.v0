@@ -1,0 +1,492 @@
+// dashboard.component.scss
+.dashboard-content {
+    --background: linear-gradient(-135deg, #0d1c23 80%, #081e29 20%);
+    --padding-top: 1rem;
+    --padding-bottom: 2rem;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+}
+
+
+/* Header */
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.app-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    background: linear-gradient(135deg, #bde079e1, #FF9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.app-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.refresh-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bde079e1;
+    font-size: 1.2rem;
+}
+
+
+/* Period Selector */
+
+.period-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.25rem;
+}
+
+.period-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.period-btn.active {
+    background: #bde079e1;
+    color: #081017;
+}
+
+
+/* Metrics Grid */
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.metric-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.metric-trend {
+    font-size: 1rem;
+}
+
+.metric-trend.positive {
+    color: #bde079e1;
+}
+
+.metric-trend.negative {
+    color: #ff6b6b;
+}
+
+.sales-card .metric-icon {
+    background: rgba(189, 224, 121, 0.2);
+    color: #bde079e1;
+}
+
+.expenses-card .metric-icon {
+    background: rgba(255, 152, 0, 0.2);
+    color: #FF9800;
+}
+
+.profit-card .metric-icon {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.transactions-card .metric-icon {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196F3;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+
+/* Insights Section */
+
+.insights-section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.insight-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.insight-icon.best {
+    background: rgba(189, 224, 121, 0.2);
+    color: #bde079e1;
+}
+
+.insight-icon.peak {
+    background: rgba(255, 152, 0, 0.2);
+    color: #FF9800;
+}
+
+.insight-icon.category {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196F3;
+}
+
+.insight-icon.expense {
+    background: rgba(156, 39, 176, 0.2);
+    color: #9C27B0;
+}
+
+.insight-value {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+}
+
+.insight-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-bottom: 0.1rem;
+}
+
+.insight-subtext {
+    font-size: 0.7rem;
+    opacity: 0.6;
+}
+
+
+/* Actions Section */
+
+.actions-section {
+    margin-bottom: 2rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn.primary {
+    background: rgba(189, 224, 121, 0.2);
+    border-color: rgba(189, 224, 121, 0.3);
+    color: #bde079e1;
+}
+
+.action-btn.secondary {
+    background: rgba(255, 152, 0, 0.2);
+    border-color: rgba(255, 152, 0, 0.3);
+    color: #FF9800;
+}
+
+.action-btn.tertiary {
+    background: rgba(33, 150, 243, 0.2);
+    border-color: rgba(33, 150, 243, 0.3);
+    color: #2196F3;
+}
+
+.action-btn.quaternary {
+    background: rgba(156, 39, 176, 0.2);
+    border-color: rgba(156, 39, 176, 0.3);
+    color: #9C27B0;
+}
+
+.action-btn:active {
+    transform: scale(0.95);
+}
+
+.action-icon {
+    font-size: 1.5rem;
+}
+
+.action-btn span {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
+/* Activity Section */
+
+.activity-section {
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.view-all-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #bde079e1;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.activity-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.activity-item:active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.activity-item.sale .activity-icon {
+    background: rgba(189, 224, 121, 0.2);
+    color: #bde079e1;
+}
+
+.activity-item.expense .activity-icon {
+    background: rgba(255, 152, 0, 0.2);
+    color: #FF9800;
+}
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-description {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+}
+
+.activity-time {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.activity-amount {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.activity-amount.sale {
+    color: #bde079e1;
+}
+
+.activity-amount.expense {
+    color: #FF9800;
+}
+
+
+/* Stats Section */
+
+.stats-section {
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.stat-item.up {
+    border-color: rgba(189, 224, 121, 0.3);
+}
+
+.stat-item.down {
+    border-color: rgba(255, 152, 0, 0.3);
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: #bde079e1;
+}
+
+.stat-item.down .stat-value {
+    color: #FF9800;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.stat-trend {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.stat-trend.up {
+    color: #bde079e1;
+}
+
+.stat-trend.down {
+    color: #FF9800;
+}
+
+
+/* Light Mode Support */
+
+:host-context(.light-mode) .refresh-btn,
+:host-context(.light-mode) .view-all-btn {
+    background: rgba(8, 16, 23, 0.05);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+:host-context(.light-mode) .metric-card,
+:host-context(.light-mode) .insight-card,
+:host-context(.light-mode) .action-btn,
+:host-context(.light-mode) .activity-item,
+:host-context(.light-mode) .stat-item {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+:host-context(.light-mode) .period-selector {
+    background: rgba(8, 16, 23, 0.05);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+
+/* Responsive */
+
+@media (max-width: 380px) {
+    .metrics-grid,
+    .insights-grid,
+    .actions-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .app-title {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,384 @@
+.insights-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+    margin: 0;
+    padding: 0;
+    pointer-events: all;
+}
+
+.insights-content {
+    background: linear-gradient(-135deg, #0d1c23 0%, #081e29 100%);
+    border-radius: 24px;
+    max-height: 85vh;
+    padding: 1rem 1.5rem 2rem;
+    animation: slideUp 0.3s ease;
+    overflow-y: auto;
+    margin: 0;
+    pointer-events: all;
+    position: relative;
+    /* Mobile first */
+    width: 90vw;
+    max-width: 400px;
+    /* Desktop */
+    @media (min-width: 768px) {
+        width: 80vw;
+        max-width: 1000px;
+        border-radius: 24px;
+    }
+    /* Large desktop */
+    @media (min-width: 1200px) {
+        width: 80vw;
+        max-width: 1200px;
+    }
+}
+
+
+/* Rest of your CSS remains the same */
+
+.handle-bar {
+    width: 40px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    margin: 0 auto 1rem;
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    @keyframes slideUp {
+        from {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+.insights-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.insights-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, #bde079e1, #FF9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    @media (min-width: 768px) {
+        font-size: 1.8rem;
+    }
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bde079e1;
+    font-size: 1.2rem;
+    @media (min-width: 768px) {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+    }
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #bde079e1;
+    @media (min-width: 768px) {
+        font-size: 1.3rem;
+    }
+}
+
+.insights-section {
+    margin-bottom: 2rem;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1.5rem;
+    }
+    @media (min-width: 1024px) {
+        gap: 2rem;
+    }
+}
+
+.insight-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    @media (min-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+    @media (min-width: 1024px) {
+        padding: 2rem 1rem;
+    }
+}
+
+.insight-card.up {
+    border-color: rgba(189, 224, 121, 0.3);
+}
+
+.insight-card.down {
+    border-color: rgba(255, 152, 0, 0.3);
+}
+
+.insight-card:active {
+    transform: scale(0.98);
+}
+
+.insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    @media (min-width: 768px) {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    @media (min-width: 1024px) {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+}
+
+.insight-icon.success {
+    background: rgba(189, 224, 121, 0.2);
+    color: #bde079e1;
+}
+
+.insight-icon.primary {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196F3;
+}
+
+.insight-icon.warning {
+    background: rgba(255, 152, 0, 0.2);
+    color: #FF9800;
+}
+
+.insight-content {
+    flex: 1;
+    @media (min-width: 768px) {
+        flex: none;
+        width: 100%;
+    }
+}
+
+.insight-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.1rem;
+    @media (min-width: 768px) {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    @media (min-width: 1024px) {
+        font-size: 1.5rem;
+    }
+}
+
+.insight-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+    @media (min-width: 768px) {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+    @media (min-width: 1024px) {
+        font-size: 1rem;
+    }
+}
+
+.insight-description {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    @media (min-width: 768px) {
+        font-size: 0.8rem;
+    }
+}
+
+.insight-trend {
+    font-size: 1rem;
+    @media (min-width: 768px) {
+        font-size: 1.2rem;
+    }
+}
+
+.insight-trend.up {
+    color: #bde079e1;
+}
+
+.insight-trend.down {
+    color: #FF9800;
+}
+
+.recommendations-section {
+    margin-bottom: 2rem;
+}
+
+.recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @media (min-width: 768px) {
+        gap: 1.5rem;
+    }
+}
+
+.recommendation-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(165, 185, 8, 0.555);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    @media (min-width: 768px) {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    @media (min-width: 1024px) {
+        padding: 2rem;
+    }
+}
+
+.recommendation-number {
+    background: #bde079e1;
+    color: #081017;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    @media (min-width: 768px) {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    @media (min-width: 1024px) {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+}
+
+.recommendation-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    @media (min-width: 768px) {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    @media (min-width: 1024px) {
+        font-size: 1.1rem;
+    }
+}
+
+.actions-section {
+    margin-top: 1rem;
+    @media (min-width: 768px) {
+        margin-top: 2rem;
+    }
+}
+
+.action-btn {
+    width: 100%;
+    background: #bde079e1;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    color: #081017;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    @media (min-width: 768px) {
+        padding: 1.25rem;
+        font-size: 1.1rem;
+        border-radius: 16px;
+    }
+    @media (min-width: 1024px) {
+        padding: 1.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

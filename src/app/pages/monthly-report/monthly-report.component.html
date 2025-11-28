@@ -1,0 +1,199 @@
+<!-- monthly-report.component.html -->
+<ion-content class="monthly-report-content" fullscreen>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <button class="back-btn" (click)="goBack()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+            <h1 class="page-title">Monthly Report</h1>
+            <div class="header-actions">
+                <!-- <button class="share-btn" (click)="shareReport()">
+                    <ion-icon name="share"></ion-icon>
+                </button> -->
+                <button class="refresh-btn" (click)="refreshData()" [disabled]="isLoading">
+                    <ion-icon name="refresh" [class.spinning]="isLoading"></ion-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Loading monthly report...</p>
+    </div>
+
+    <div *ngIf="!isLoading">
+        <!-- Info Banner -->
+        <div class="info-banner">
+            <div class="info-icon">
+                <ion-icon name="calendar"></ion-icon>
+            </div>
+            <div class="info-content">
+                <p class="info-title">How am I doing this month?</p>
+                <p class="info-text">
+                    Track your monthly performance and see how your business is growing over time.
+                </p>
+            </div>
+        </div>
+
+        <!-- Month Selector -->
+
+        <div class="month-selector">
+            <label class="selector-label">Select Month</label>
+            <select class="month-select" [(ngModel)]="selectedMonth" (change)="onMonthChange()">
+                <option *ngFor="let month of months" 
+                        [value]="month.value" 
+                        [disabled]="month.disabled">
+                    {{month.label}}
+                </option>
+            </select>
+        </div>
+
+        <!-- Current Month Display -->
+        <div class="current-month-display">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <span>{{currentData?.monthName || 'Loading...'}}</span>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="key-metrics">
+            <div class="metric-card profit-card">
+                <div class="metric-icon">
+                    <ion-icon name="trending-up"></ion-icon>
+                </div>
+                <div class="metric-content">
+                    <div class="metric-value">{{formatCurrency(currentData?.profit)}}</div>
+                    <div class="metric-label">Net Profit</div>
+                    <div class="metric-trend" [class]="getProfitGrowthClass()">
+                        <ion-icon [name]="getProfitGrowthIcon()"></ion-icon>
+                        <span>{{getProfitGrowth()}}% from last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-mini-value">{{formatCurrency(currentData?.sales)}}</div>
+                    <div class="metric-mini-label">Total Sales</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-mini-value">{{formatCurrency(currentData?.expenses)}}</div>
+                    <div class="metric-mini-label">Total Expenses</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-mini-value">{{formatNumber(currentData?.transactionCount)}}</div>
+                    <div class="metric-mini-label">Transactions</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-mini-value">{{getSalesToExpenseRatio()}}%</div>
+                    <div class="metric-mini-label">Expense Ratio</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="currentData?.transactionCount === 0" class="empty-state">
+            <div class="empty-icon">
+                <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <h3>No Data Available</h3>
+            <p>No transactions recorded for this period</p>
+            <p class="empty-subtext">Start adding sales and expenses to see your monthly reports</p>
+        </div>
+
+        <!-- Performance Indicators (Only show if we have data) -->
+        <div *ngIf="currentData?.transactionCount > 0" class="performance-section">
+            <h3 class="section-title">Performance Indicators</h3>
+
+            <div class="indicators-grid">
+                <div class="indicator-card">
+                    <div class="indicator-icon positive">
+                        <ion-icon name="calendar"></ion-icon>
+                    </div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">{{currentData?.bestDay}}</div>
+                        <div class="indicator-label">Best Sales Day</div>
+                    </div>
+                </div>
+
+                <div class="indicator-card">
+                    <div class="indicator-icon neutral">
+                        <ion-icon name="calendar"></ion-icon>
+                    </div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">{{currentData?.worstDay}}</div>
+                        <div class="indicator-label">Slowest Day</div>
+                    </div>
+                </div>
+
+                <div class="indicator-card">
+                    <div class="indicator-icon positive">
+                        <ion-icon name="pricetag"></ion-icon>
+                    </div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">{{currentData?.topCategory}}</div>
+                        <div class="indicator-label">Top Category</div>
+                    </div>
+                </div>
+
+                <div class="indicator-card">
+                    <div class="indicator-icon info">
+                        <ion-icon name="cash"></ion-icon>
+                    </div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">{{formatCurrency(getAverageDailyProfit())}}</div>
+                        <div class="indicator-label">Avg Daily Profit</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Comparison (Only show if we have data) -->
+        <div *ngIf="currentData?.transactionCount > 0 && monthlyData['previous']?.transactionCount > 0" class="comparison-section">
+            <h3 class="section-title">Monthly Growth</h3>
+
+            <div class="comparison-card">
+                <div class="comparison-item">
+                    <span class="comparison-label">Profit Growth</span>
+                    <span class="comparison-value" [class]="getProfitGrowthClass()">
+                        {{getProfitGrowth()}}%
+                    </span>
+                </div>
+                <div class="comparison-item">
+                    <span class="comparison-label">Sales vs Last Month</span>
+                    <span class="comparison-value" [class]="currentData?.sales >= monthlyData['previous']?.sales ? 'positive' : 'negative'">
+                        {{currentData?.sales >= monthlyData['previous']?.sales ? '+' : ''}}{{formatCurrency(currentData?.sales - monthlyData['previous']?.sales)}}
+                    </span>
+                </div>
+                <div class="comparison-item">
+                    <span class="comparison-label">Transaction Growth</span>
+                    <span class="comparison-value" [class]="currentData?.transactionCount >= monthlyData['previous']?.transactionCount ? 'positive' : 'negative'">
+                        {{currentData?.transactionCount >= monthlyData['previous']?.transactionCount ? '+' : ''}}{{currentData?.transactionCount - monthlyData['previous']?.transactionCount}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats (Only show if we have data) -->
+        <div *ngIf="currentData?.transactionCount > 0" class="quick-stats">
+            <h3 class="section-title">Quick Stats</h3>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">{{formatCurrency(currentData?.sales / 30)}}</div>
+                    <div class="stat-desc">Average Monthly Sales</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{formatCurrency(currentData?.expenses / 30)}}</div>
+                    <div class="stat-desc">Average Monthly Expenses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{getSalesToExpenseRatio()}}%</div>
+                    <div class="stat-desc">of Sales went to Expenses</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

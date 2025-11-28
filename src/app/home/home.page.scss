@@ -1,27 +1,617 @@
-#container {
-  text-align: center;
+/* home.page.css */
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-toolbar {
+    --background: linear-gradient(-135deg, #0d1c23 80%, #081e29 20%);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 0;
+    height: 80px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.home-content {
+    --padding-top: 2rem;
+    --padding-bottom: 5rem;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
 
-  color: #8c8c8c;
+/* Dark Mode */
 
-  margin: 0;
+.home-content.dark-mode {
+    --background: linear-gradient(135deg, #0d1c23 80%, #081e29 20%);
+    color: #ffffff;
 }
 
-#container a {
-  text-decoration: none;
+
+/* Light Mode */
+
+.home-content.light-mode {
+    --background: #ffffff;
+    color: #081017;
+}
+
+
+/* Header */
+
+.header {
+    padding: 1rem 0 1.5rem 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0 0 0.25rem 0;
+    background: linear-gradient(135deg, #bde079e1, #FF9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 15px;
+}
+
+.app-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bde079e1;
+    font-size: 1.2rem;
+}
+
+.light-mode .theme-toggle {
+    background: rgba(8, 16, 23, 0.05);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+    color: #FF9800;
+}
+
+
+/* Summary Cards */
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .summary-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.sales-card .card-icon {
+    background: linear-gradient(135deg, #bde079e1, #4CAF50);
+    color: #081017;
+}
+
+.expenses-card .card-icon {
+    background: linear-gradient(135deg, #FF9800, #FF5722);
+    color: #081017;
+}
+
+.profit-card .card-icon {
+    background: linear-gradient(135deg, #2196F3, #3F51B5);
+    color: white;
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+}
+
+.card-amount {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 0.25rem 0;
+}
+
+.card-trend {
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+
+.positive {
+    color: #4CAF50;
+}
+
+.negative {
+    color: #FF5722;
+}
+
+
+/* Quick Actions */
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+}
+
+.quick-actions {
+    margin-bottom: 2rem;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.action-btn {
+    background: #347746;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.light-mode .action-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+.action-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    // background: linear-gradient(135deg, #bde079e1, #FF9800);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    // color: #FF9800;
+}
+
+.action-btn span {
+    font-size: 0.9rem;
+    font-weight: 200;
+}
+
+.view-all-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #bde079e1;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+
+
+/* Chart Section */
+
+// .chart-section {
+//     margin-bottom: 2rem;
+//     padding: 24px;
+// }
+// .chart-header {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 1rem;
+// }
+// .light-mode .view-all-btn {
+//     border: 1px solid rgba(8, 16, 23, 0.2);
+//     color: #FF9800;
+// }
+// .chart-container {
+//     background: rgba(255, 255, 255, 0.1);
+//     backdrop-filter: blur(15px);
+//     border: 1px solid rgba(255, 255, 255, 0.2);
+//     border-radius: 16px;
+//     padding: 2.0rem;
+//     // padding: 24px;
+// }
+// .light-mode .chart-container {
+//     background: rgba(255, 255, 255, 0.8);
+//     border: 1px solid rgba(8, 16, 23, 0.1);
+// }
+// .simple-chart {
+//     height: 200px;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .chart-bars {
+//     display: flex;
+//     align-items: flex-end;
+//     justify-content: space-between;
+//     height: 150px;
+//     padding: 0 0.5rem;
+//     margin-bottom: 1rem;
+// }
+// .chart-bar {
+//     flex: 1;
+//     margin: 0 0.25rem;
+//     background: linear-gradient(to top, #bde079e1, #FF9800);
+//     background: #bde079e1;
+//     border-radius: 4px 4px 0 0;
+//     position: relative;
+//     min-height: 20px;
+//     transition: all 0.3s ease;
+// }
+// .chart-bar:hover {
+//     opacity: 0.8;
+// }
+// .bar-value {
+//     position: absolute;
+//     top: -25px;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     font-size: 0.7rem;
+//     font-weight: 100;
+//     white-space: nowrap;
+// }
+// .chart-labels {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 0 0.5rem;
+// }
+// .chart-label {
+//     flex: 1;
+//     text-align: center;
+//     font-size: 0.8rem;
+//     opacity: 0.8;
+// }
+.chart-section {
+    margin-bottom: 2rem;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.chart-filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #bde079e1;
+    color: #081017;
+    border-color: #bde079e1;
+}
+
+.filter-btn:active {
+    transform: scale(0.95);
+}
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    height: 300px;
+    margin-bottom: 1rem;
+}
+
+.light-mode .chart-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+.chart-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.light-mode .stat-item {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #bde079e1;
+}
+
+.light-mode .stat-value {
+    color: #FF9800;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .chart-filters {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .chart-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Recent Transactions */
+
+.recent-transactions {
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.transaction-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.light-mode .transaction-item {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+.transaction-item:active {
+    transform: scale(0.98);
+}
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.transaction-icon.sale {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.transaction-icon.expense {
+    background: rgba(255, 87, 34, 0.2);
+    color: #FF5722;
+}
+
+.transaction-details {
+    flex: 1;
+}
+
+.transaction-title {
+    font-size: 1rem;
+    font-weight: 200;
+    margin: 0 0 0.25rem 0;
+}
+
+.transaction-time {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.transaction-amount {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.transaction-amount.sale {
+    color: #4CAF50;
+}
+
+.transaction-amount.expense {
+    color: #FF5722;
+}
+
+.logout {
+    margin: 5px;
+    background: linear-gradient(135deg, #0d1c23 80%, #081e29 20%);
+    width: 40px;
+    height: 40px;
+}
+
+
+/* Floating Action Button */
+
+.fab {
+    // position: fixed;
+    // top: 80px;
+    margin: 10px;
+    right: 9.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(-135deg, #0d1c23 80%, #081e29 20%);
+    border: none;
+    color: #081017;
+    color: white;
+    font-size: 1.5rem;
+    // box-shadow: 0 8px 32px rgba(189, 224, 121, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90000;
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+
+/* Bottom Navigation */
+
+.bottom-nav {
+    --background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 0;
+    height: 70px;
+}
+
+.light-mode .bottom-nav {
+    --background: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(8, 16, 23, 0.1);
+}
+
+.nav-item {
+    --color: rgba(255, 255, 255, 0.7);
+    --color-selected: #bde079e1;
+    font-size: 0.8rem;
+}
+
+.light-mode .nav-item {
+    --color: rgba(8, 16, 23, 0.6);
+    --color-selected: #FF9800;
+}
+
+.fab-tab {
+    transform: translateY(-10px);
+}
+
+.fab-tab-inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #bde079e1, #FF9800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #081017;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 20px rgba(189, 224, 121, 0.3);
+}
+
+
+/* Responsive Design */
+
+@media (min-width: 768px) {
+    .home-content {
+        --padding-start: 2rem;
+        --padding-end: 2rem;
+    }
+    .summary-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .action-buttons {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 380px) {
+    .app-title {
+        font-size: 1.5rem;
+    }
+    .summary-card {
+        padding: 1rem;
+    }
+    .card-amount {
+        font-size: 1.3rem;
+    }
+    .action-buttons {
+        grid-template-columns: 1fr 1fr;
+    }
 }

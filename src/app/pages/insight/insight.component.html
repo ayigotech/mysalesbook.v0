@@ -1,0 +1,55 @@
+<!-- business-insights-modal.component.html -->
+<div class="insights-overlay" (click)="close()">
+    <div class="insights-content" (click)="onContentClick($event)">
+        <!-- Handle Bar -->
+        <div class="handle-bar"></div>
+
+        <!-- Header -->
+        <div class="insights-header">
+            <h2 class="insights-title">Business Insights</h2>
+            <button class="close-btn" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="insights-section">
+            <h3 class="section-title">Key Metrics</h3>
+            <div class="insights-grid">
+                <div *ngFor="let insight of insights" class="insight-card" [class]="insight.trend">
+                    <div class="insight-icon" [class]="insight.color">
+                        <ion-icon [name]="insight.icon"></ion-icon>
+                    </div>
+                    <div class="insight-content">
+                        <div class="insight-value">{{insight.value}}</div>
+                        <div class="insight-title">{{insight.title}}</div>
+                        <div class="insight-description">{{insight.description}}</div>
+                    </div>
+                    <div class="insight-trend" [class]="insight.trend">
+                        <ion-icon name="trending-up" *ngIf="insight.trend === 'up'"></ion-icon>
+                        <ion-icon name="trending-down" *ngIf="insight.trend === 'down'"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recommendations-section">
+            <h3 class="section-title">Smart Recommendations</h3>
+            <div class="recommendations-list">
+                <div *ngFor="let recommendation of recommendations; let i = index" class="recommendation-item">
+                    <div class="recommendation-number">{{i + 1}}</div>
+                    <div class="recommendation-text">{{recommendation}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="actions-section">
+            <button class="action-btn primary" (click)="close()">
+        <ion-icon name="checkmark-circle"></ion-icon>
+        Got it, thanks!
+      </button>
+        </div>
+    </div>
+</div>

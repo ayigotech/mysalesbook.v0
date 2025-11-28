@@ -1,0 +1,204 @@
+<!-- dashboard.component.html -->
+<ion-content class="dashboard-content" fullscreen>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="app-info">
+                <h1 class="app-title">Business Dashboard</h1>
+                <p class="app-subtitle">Your business at a glance</p>
+            </div>
+            <button class="refresh-btn" (click)="refreshData()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+        </div>
+    </div>
+
+    <!-- Period Selector -->
+    <div class="period-selector">
+        <button *ngFor="let period of ['today', 'week', 'month']" class="period-btn" [class.active]="selectedPeriod === period" (click)="selectedPeriod = period">
+      {{period === 'today' ? 'Today' : 
+        period === 'week' ? 'This Week' : 'This Month'}}
+    </button>
+    </div>
+
+    <!-- Key Metrics Cards -->
+    <div class="metrics-grid" data-aos="fade-right">
+        <div class="metric-card sales-card" data-aos="zoom-in" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="metric-header">
+                <div class="metric-icon">
+                    <ion-icon name="cash"></ion-icon>
+                </div>
+                <div class="metric-trend positive">
+                    <ion-icon name="trending-up"></ion-icon>
+                </div>
+            </div>
+            <div class="metric-value">{{formatCurrency(getCurrentData().sales)}}</div>
+            <div class="metric-label">Total Sales</div>
+        </div>
+
+        <div class="metric-card expenses-card" data-aos="zoom-in" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="metric-header">
+                <div class="metric-icon">
+                    <ion-icon name="receipt"></ion-icon>
+                </div>
+                <div class="metric-trend negative">
+                    <ion-icon name="trending-down"></ion-icon>
+                </div>
+            </div>
+            <div class="metric-value">{{formatCurrency(getCurrentData().expenses)}}</div>
+            <div class="metric-label">Total Expenses</div>
+        </div>
+
+        <div class="metric-card profit-card" data-aos="zoom-in" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="metric-header">
+                <div class="metric-icon">
+                    <ion-icon name="trending-up"></ion-icon>
+                </div>
+                <div class="metric-trend positive">
+                    <ion-icon name="trending-up"></ion-icon>
+                </div>
+            </div>
+            <div class="metric-value">{{formatCurrency(getCurrentData().profit)}}</div>
+            <div class="metric-label">Net Profit</div>
+        </div>
+
+        <div class="metric-card transactions-card" data-aos="zoom-in" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="metric-header">
+                <div class="metric-icon">
+                    <ion-icon name="list"></ion-icon>
+                </div>
+                <div class="metric-trend positive">
+                    <ion-icon name="trending-up"></ion-icon>
+                </div>
+            </div>
+            <div class="metric-value">{{getCurrentData().transactions}}</div>
+            <div class="metric-label">Transactions</div>
+        </div>
+    </div>
+
+    <!-- Performance Insights -->
+    <div class="insights-section">
+        <h3 class="section-title">Performance Insights</h3>
+
+        <div class="insights-grid">
+            <div class="insight-card">
+                <div class="insight-icon best">
+                    <ion-icon name="calendar"></ion-icon>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-value">{{performanceMetrics.bestDay.day}}</div>
+                    <div class="insight-label">Best Sales Day</div>
+                    <div class="insight-subtext">GHS {{performanceMetrics.bestDay.amount}} avg</div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-icon peak">
+                    <ion-icon name="time"></ion-icon>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-value">{{performanceMetrics.peakHour.hour}}</div>
+                    <div class="insight-label">Peak Business Hours</div>
+                    <div class="insight-subtext">{{performanceMetrics.peakHour.percentage}}% of sales</div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-icon category">
+                    <ion-icon name="pricetag"></ion-icon>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-value">{{performanceMetrics.topCategory.name}}</div>
+                    <div class="insight-label">Top Category</div>
+                    <div class="insight-subtext">{{performanceMetrics.topCategory.percentage}}% of revenue</div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-icon expense">
+                    <ion-icon name="analytics"></ion-icon>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-value">{{performanceMetrics.expenseRatio.percentage}}%</div>
+                    <div class="insight-label">Expense Ratio</div>
+                    <div class="insight-subtext">of sales go to expenses</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <!-- <div class="actions-section">
+        <h3 class="section-title">Quick Actions</h3>
+
+        <div class="actions-grid">
+            <button class="action-btn primary" (click)="quickAction('add_sale')">
+        <div class="action-icon">
+          <ion-icon name="add-circle"></ion-icon>
+        </div>
+        <span>Add Sale</span>
+      </button>
+
+            <button class="action-btn secondary" (click)="quickAction('add_expense')">
+        <div class="action-icon">
+          <ion-icon name="remove-circle"></ion-icon>
+        </div>
+        <span>Add Expense</span>
+      </button>
+
+            <button class="action-btn tertiary" (click)="quickAction('view_history')">
+        <div class="action-icon">
+          <ion-icon name="time"></ion-icon>
+        </div>
+        <span>View History</span>
+      </button>
+
+            <button class="action-btn quaternary" (click)="quickAction('view_report')">
+        <div class="action-icon">
+          <ion-icon name="document-text"></ion-icon>
+        </div>
+        <span>View Report</span>
+      </button>
+        </div>
+    </div> -->
+
+    <!-- Recent Activity -->
+    <!-- <div class="activity-section">
+        <div class="section-header">
+            <h3 class="section-title">Recent Activity</h3>
+            <button class="view-all-btn" (click)="navigateTo('transaction-history')">
+        View All
+      </button>
+        </div>
+
+        <div class="activity-list">
+            <div *ngFor="let activity of recentActivity" class="activity-item" [class.sale]="activity.type === 'sale'" [class.expense]="activity.type === 'expense'">
+                <div class="activity-icon">
+                    <ion-icon [name]="activity.icon"></ion-icon>
+                </div>
+                <div class="activity-details">
+                    <div class="activity-description">{{activity.description}}</div>
+                    <div class="activity-time">{{activity.time}}</div>
+                </div>
+                <div class="activity-amount" [class.sale]="activity.type === 'sale'" [class.expense]="activity.type === 'expense'">
+                    {{activity.type === 'sale' ? '+' : '-'}} GHS {{activity.amount}}
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Quick Stats -->
+    <div class="stats-section">
+        <h3 class="section-title">Business Health</h3>
+
+        <div class="stats-grid">
+            <div *ngFor="let stat of quickStats" class="stat-item" [class]="stat.trend">
+                <div class="stat-value">{{stat.value}}</div>
+                <div class="stat-label">{{stat.label}}</div>
+                <div class="stat-trend" [class]="stat.trend">
+                    <ion-icon [name]="getTrendIcon(stat.trend)"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
