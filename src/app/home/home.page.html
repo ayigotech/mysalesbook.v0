@@ -1,25 +1,25 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <div class="header-content" data-aos="fade-down">
-            <div class="app-info">
-                <h1 class="app-title">
-                    <button class="logout" (click)="logout()">
-                    <ion-icon slot=""name="log-out"></ion-icon>
-                    </button> MySalesBook
-                </h1>
-            </div>
-            <button class="fab" (click)="showInsight()">
-                <ion-icon name="trending-up-outline"></ion-icon>
-            </button>
-        </div>
-    </ion-toolbar>
-</ion-header>
-
 <ion-content [class.dark-mode]="isDarkMode" [class.light-mode]="!isDarkMode" class="home-content" fullscreen>
 
     <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
+
+
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <button class="logout" (click)="logout()">
+                    <ion-icon slot=""name="log-out"></ion-icon>
+                    </button>
+            <h1 class="page-title">MySalesBook</h1>
+            <div class="header-actions">
+                <button class="fab" (click)="showInsight()">
+                <ion-icon name="trending-up-outline"></ion-icon>
+            </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Quick Summary Cards -->
     <div class="summary-cards">
