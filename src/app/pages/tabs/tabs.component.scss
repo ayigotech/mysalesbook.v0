@@ -5,6 +5,10 @@
     --background: linear-gradient(135deg, #0d1c23 80%, #081e29 20%);
     backdrop-filter: blur(20px);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+    --padding-start: 10px;
+    /* left margin inside tab bar */
+    --padding-end: 10px;
+    /* right margin inside tab bar */
     padding: 0.5rem 0;
     height: 70px;
 }

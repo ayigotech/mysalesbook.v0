@@ -207,7 +207,7 @@ export class HomePage implements OnInit, AfterViewInit {
             display: true,
             position: 'top',
             labels: {
-              color: 'rgba(255, 255, 255, 0.7)',
+              color: '#000',
               usePointStyle: true
             }
           },
@@ -228,10 +228,10 @@ export class HomePage implements OnInit, AfterViewInit {
           y: {
             beginAtZero: true,
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+              color: '#000'
             },
             ticks: {
-              color: 'rgba(255, 255, 255, 0.7)',
+              color: '#002',
               callback: function(value) {
                 return 'GHS ' + value;
               }
@@ -242,7 +242,7 @@ export class HomePage implements OnInit, AfterViewInit {
               display: false
             },
             ticks: {
-              color: 'rgba(255, 255, 255, 0.7)'
+              color: '#000'
             }
           }
         },

@@ -1,2 +1,54 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+/* src/theme/variables.scss */
+
+
+/* Font */
+
+:root {
+    --ion-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* Primary Colors */
+    --ion-color-primary: #bde079;
+    --ion-color-primary-rgb: 189, 224, 121;
+    --ion-color-primary-contrast: #081017;
+    --ion-color-primary-contrast-rgb: 8, 16, 23;
+    --ion-color-primary-shade: #a6c669;
+    --ion-color-primary-tint: #c9eb8e;
+    --ion-color-secondary: #FF9800;
+    --ion-color-secondary-rgb: 255, 152, 0;
+    --ion-color-secondary-contrast: #081017;
+    --ion-color-secondary-contrast-rgb: 8, 16, 23;
+    --ion-color-secondary-shade: #e68a00;
+    --ion-color-secondary-tint: #ffa733;
+    --ion-color-tertiary: #3F51B5;
+    --ion-color-tertiary-rgb: 63, 81, 181;
+    --ion-color-tertiary-contrast: #ffffff;
+    --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+    --ion-color-tertiary-shade: #3646a1;
+    --ion-color-tertiary-tint: #5a66c2;
+    --ion-color-success: #4CAF50;
+    --ion-color-warning: #FF9800;
+    --ion-color-danger: #FF5722;
+    --ion-color-dark: #081017;
+    --ion-color-medium: #3b3b3b;
+    --ion-color-light: #ffffff;
+    /* Background gradients */
+    --ion-toolbar-background: linear-gradient(-135deg, #0d1c23 80%, #081e29 20%);
+    --ion-card-background: rgba(255, 255, 255, 0.1);
+    --ion-card-border: rgba(255, 255, 255, 0.2);
+    /* Tab bar */
+    --ion-tab-bar-background: rgba(255, 255, 255, 0.1);
+    --ion-tab-bar-border: rgba(255, 255, 255, 0.2);
+    --ion-tab-bar-color: rgba(255, 255, 255, 0.7);
+    --ion-tab-bar-color-selected: #bde079e1;
+    /* Light mode overrides */
+    --ion-background-color-light: #ffffff;
+    --ion-text-color-light: #ec1212;
+    --ion-tab-bar-background-light: rgba(255, 255, 255, 0.9);
+    --ion-tab-bar-color-light: rgba(8, 16, 23, 0.6);
+    --ion-tab-bar-color-selected-light: #FF9800;
+    /* Dark mode overrides */
+    --ion-background-color-dark: #081017;
+    --ion-text-color-dark: #ed0a0a;
+    --ion-tab-bar-background-dark: rgba(255, 255, 255, 0.1);
+    --ion-tab-bar-color-dark: rgba(255, 255, 255, 0.7);
+    --ion-tab-bar-color-selected-dark: #bde079e1;
+}

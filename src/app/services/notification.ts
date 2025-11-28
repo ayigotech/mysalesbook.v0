@@ -10,7 +10,7 @@ export class NotificationService {
   constructor() {
     // Optional: Configure global iziToast settings
     iziToast.settings({
-      timeout: 6000,
+      timeout: 5000,
       resetOnHover: true,
       icon: 'material-icons',
       transitionIn: 'flipInX',
@@ -23,7 +23,7 @@ export class NotificationService {
     iziToast.success({
       title,
       message,
-      backgroundColor: '#28a745',
+      backgroundColor: '#28a755',
       theme: 'dark'
     });
   }
@@ -49,7 +49,7 @@ export class NotificationService {
       message,
       backgroundColor: '#ffc107',
       theme: 'dark',
-      timeout: 8000
+      timeout: 5000
     });
   }
 
