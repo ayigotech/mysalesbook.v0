@@ -7,7 +7,7 @@
 
 .home-content {
     --background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    --padding-top: 1.5rem;
+    // --padding-top: 1.5rem;
     --padding-bottom: 4rem;
     --padding-start: 1rem;
     --padding-end: 1rem;
@@ -51,6 +51,8 @@
 
 .header {
     padding: 0.5rem 0 1.5rem 0;
+    // position: fixed;
+    // width: 100%;
 }
 
 .header-content {
@@ -99,6 +101,32 @@
     /* Reduced from 1.2rem */
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.add-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 0rem;
+    left: 80%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(5, 150, 104, 0.604);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.add-fab.active {
+    background: #059669;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
 }
 
 .logout:active,
@@ -405,7 +433,7 @@
 /* Recent Transactions with enhanced effects */
 
 .recent-transactions {
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
 }
 
 .section-header {

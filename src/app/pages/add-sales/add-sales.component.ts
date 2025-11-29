@@ -1,26 +1,47 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification';
 import { StorageService } from 'src/app/services/storage';
 import { TransactionType } from 'src/models';
+import { IonButton, IonContent, IonTitle, IonButtons,IonModal, IonHeader, IonToolbar, IonIcon, 
+  // IonRefresher, IonRefresherContent
+ } from "@ionic/angular/standalone";
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-add-sales',
   templateUrl: './add-sales.component.html',
   styleUrls: ['./add-sales.component.scss'],
-  imports: [CommonModule, IonicModule, FormsModule]
+  imports: [CommonModule, FormsModule, IonButton, IonContent,
+    IonTitle, IonButtons, IonModal, IonHeader, IonToolbar, IonIcon,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    ],
+     providers: [ModalController] // Add this line
 })
+
 export class AddSalesComponent {
-  saleData = {
-    amount: null as number | null,
-    datetime: new Date(),
-    customer: '',
-    category: '',
-    notes: ''
-  };
+
+isRefreshing = true;
+showDateModal = false; 
+// temporary date holder
+tempDate = new Date(); // ISO string
+
+
+ saleData = {
+  amount: null as number | null,
+  datetime: new Date(), // <-- ISO string
+  customer: '',
+  category: '',
+  notes: ''
+};
 
   quickAmounts = [5, 10, 20, 50, 100, 200, 500];
   showAmountError = false;
@@ -89,11 +110,21 @@ export class AddSalesComponent {
     this.validateAmount();
   }
 
-  showDateTimePicker() {
-    // In a real app, you'd use Ionic's datetime picker
-    // For now, we'll just use current time
-    this.saleData.datetime = new Date();
-  }
+
+
+
+
+
+onDateChange(event: MatDatepickerInputEvent<Date>) {
+  // event.value is always a Date
+  this.saleData.datetime = event.value!;
+}
+
+
+
+openCategoryModal() {
+  this.showCategoryModal = true;
+}
 
   showCategoryPicker() {
     this.showCategoryModal = true;
@@ -103,6 +134,8 @@ export class AddSalesComponent {
     this.saleData.category = category;
     this.showCategoryModal = false;
   }
+
+ 
 
   // Save Operations
 async saveSale() {
@@ -117,7 +150,7 @@ async saveSale() {
     // Prepare sale data for storage - use Date object directly
     const saleTransaction = {
       amount: this.saleData.amount!,
-      datetime: this.saleData.datetime, // Already a Date object
+      datetime: new Date(this.saleData.datetime), // Already a Date object
       customer: this.saleData.customer,
       category: this.saleData.category,
       notes: this.saleData.notes,
@@ -162,24 +195,23 @@ async saveSale() {
   }
 
   resetForm() {
-    this.saleData = {
-      amount: null,
-      datetime: new Date(),
-      customer: '',
-      category: '',
-      notes: ''
-    };
-    this.showAmountError = false;
-  }
+  this.saleData = {
+    amount: null,
+    datetime: new Date(),
+    customer: '',
+    category: '',
+    notes: ''
+  };
+  this.showAmountError = false;
+}
 
-  // Recent Sales
-  fillFromRecent(recent: any) {
-    console.log('Swiped recent:', recent);
-    this.saleData.amount = recent.amount;
-    this.saleData.customer = recent.customer;
-    this.saleData.datetime = new Date();
-    this.validateAmount();
-  }
+fillFromRecent(recent: any) {
+  this.saleData.amount = recent.amount;
+  this.saleData.customer = recent.customer;
+  this.saleData.datetime = new Date(); // ISO string
+  this.validateAmount();
+}
+
 
   async onSwipeRecent(event: any, recent: any) {
     // Handle swipe to delete recent sale
@@ -204,5 +236,10 @@ async saveSale() {
     if (diffMins < 60) return `${diffMins}m ago`;
     if (diffHours < 24) return `${diffHours}h ago`;
     return `${diffDays}d ago`;
+  }
+
+
+   async refreshPage(event: any) {
+    this.isRefreshing = true;
   }
 }

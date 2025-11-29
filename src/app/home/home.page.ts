@@ -96,7 +96,7 @@ export class HomePage implements OnInit, AfterViewInit {
       const transactions = await this.storageService.getTransactions();
       this.recentTransactions = transactions
         .sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime())
-        .slice(0, 4);
+        .slice(0, 20);
     } catch (error) {
       console.error('Error loading recent transactions:', error);
       this.recentTransactions = [];

@@ -4,11 +4,21 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { Platform } from '@ionic/angular';
 import { registerAllIcons } from './icons';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { MatNativeDateModule } from '@angular/material/core';
+// import { MatInputModule } from '@angular/material/input';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet],
+  imports: [IonApp, 
+    IonRouterOutlet,
+    // MatDatepickerModule,
+    // MatNativeDateModule,
+    // MatInputModule,
+    // BrowserAnimationsModule
+  ],
 })
 
 

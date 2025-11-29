@@ -629,3 +629,202 @@
         text-align: center;
     }
 }
+
+
+/* Date Picker Modal Styling */
+
+
+/* Angular Material Date Picker Styling */
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0 0 0.5rem 0;
+    color: #374151;
+}
+
+
+/* Input field styling */
+
+.input-group input[matInput] {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.75rem 3rem 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #1e293b;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.input-group input[matInput]:focus {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.input-group input[matInput]::placeholder {
+    color: #9ca3af;
+    font-weight: 300;
+}
+
+
+/* Datepicker toggle button */
+
+.mat-datepicker-toggle {
+    position: absolute;
+    right: 0.5rem;
+    top: 2.1rem;
+    transform: translateY(-20%);
+}
+
+.mat-datepicker-toggle button {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mat-datepicker-toggle button:hover {
+    background: rgba(5, 150, 105, 0.1);
+    color: #059669;
+}
+
+.mat-datepicker-toggle button:active {
+    transform: scale(0.9);
+}
+
+
+/* Datepicker panel styling */
+
+.mat-datepicker-content {
+    border-radius: 16px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid #f1f5f9 !important;
+}
+
+.mat-calendar {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+}
+
+
+/* Calendar header */
+
+.mat-calendar-header {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    border-radius: 16px 16px 0 0 !important;
+    padding: 1rem !important;
+}
+
+.mat-calendar-controls .mat-calendar-period-button {
+    color: #1e293b !important;
+    font-weight: 300 !important;
+    font-size: 1rem !important;
+}
+
+.mat-calendar-controls .mat-calendar-arrow {
+    border-top-color: #64748b !important;
+}
+
+
+/* Calendar table */
+
+.mat-calendar-table-header {
+    color: #64748b !important;
+    font-weight: 300 !important;
+}
+
+.mat-calendar-body-cell {
+    color: #1e293b !important;
+    font-weight: 300 !important;
+}
+
+.mat-calendar-body-cell:hover:not(.mat-calendar-body-disabled) {
+    background: rgba(5, 150, 105, 0.1) !important;
+}
+
+.mat-calendar-body-selected {
+    background: #059669 !important;
+    color: #ffffff !important;
+    font-weight: 300 !important;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+    border-color: #059669 !important;
+    color: #059669 !important;
+}
+
+.mat-calendar-body-disabled {
+    color: #cbd5e1 !important;
+}
+
+
+/* Previous/next month buttons */
+
+.mat-calendar-previous-button,
+.mat-calendar-next-button {
+    color: #64748b !important;
+}
+
+.mat-calendar-previous-button:hover,
+.mat-calendar-next-button:hover {
+    color: #059669 !important;
+}
+
+
+/* Mobile responsiveness */
+
+@media (max-width: 480px) {
+    .input-group input[matInput] {
+        font-size: 0.85rem;
+        padding: 0.7rem 2.5rem 0.7rem 0.8rem;
+    }
+    .input-label {
+        font-size: 0.85rem;
+    }
+    .mat-datepicker-toggle {
+        right: 0.4rem;
+        top: 2rem;
+    }
+    .mat-datepicker-toggle button {
+        width: 36px;
+        height: 36px;
+    }
+    .mat-calendar {
+        font-size: 0.9rem !important;
+    }
+}
+
+
+/* Small screen adjustments */
+
+@media (max-width: 380px) {
+    .input-group input[matInput] {
+        padding: 0.6rem 2.2rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+    }
+    .mat-datepicker-toggle {
+        right: 0.3rem;
+    }
+    .mat-datepicker-toggle button {
+        width: 32px;
+        height: 32px;
+    }
+}

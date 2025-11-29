@@ -86,12 +86,14 @@ export class DashboardComponent implements OnInit {
   async loadDashboardData() {
     this.isLoading = true;
     try {
+      await this.loadCurrentPeriodData();
       await Promise.all([
-        this.loadCurrentPeriodData(),
         this.loadPerformanceMetrics(),
-        this.loadRecentActivity(),
-        this.calculateQuickStats()
+        this.loadRecentActivity()
       ]);
+
+     await this.calculateQuickStats();
+      
     } catch (error) {
       console.error('Error loading dashboard data:', error);
       this.notificationService.error('Failed to load dashboard data', 'Data Error');
@@ -218,8 +220,9 @@ export class DashboardComponent implements OnInit {
   }
 
   // Calculate quick stats
-  async calculateQuickStats() {
+  async calculateQuickStats2() {
     const currentData = this.getCurrentData();
+    console.log('currentData; ', currentData)
     
     // Average daily sales (based on monthly data)
     const avgDailySales = this.currentData.month.transactions > 0 ? 
@@ -240,6 +243,46 @@ export class DashboardComponent implements OnInit {
       { label: 'Profit Margin', value: `${profitMargin}%`, trend: profitMargin > 20 ? 'up' : 'down' }
     ];
   }
+
+
+  async calculateQuickStats() {
+  const currentData = this.getCurrentData();
+
+  console.log('%c--- QUICK STATS DEBUG ---', 'color: #00aaff; font-weight: bold;');
+  console.log('Selected period:', this.selectedPeriod);
+
+  console.log('%cMonthly Data Used for Avg Daily Sales:', 'color: orange; font-weight: bold;');
+  console.log('Month Transactions:', this.currentData.month.transactions);
+  console.log('Month Sales:', this.currentData.month.sales);
+  console.log('Month Expenses:', this.currentData.month.expenses);
+  console.log('Month Profit:', this.currentData.month.profit);
+
+  // Calculate
+  const avgDailySales = this.currentData.month.transactions > 0
+    ? this.currentData.month.sales / 30
+    : 0;
+
+  console.log('%cAvg Daily Sales Result:', 'color: green; font-weight: bold;');
+  console.log('Computed Avg Daily Sales:', avgDailySales);
+
+  // Expense ratio
+  const expenseRatio = currentData.sales > 0 ? 
+    Math.round((currentData.expenses / currentData.sales) * 100) : 0;
+
+  // Profit margin
+  const profitMargin = currentData.sales > 0 ? 
+    Math.round((currentData.profit / currentData.sales) * 100) : 0;
+
+  this.quickStats = [
+    { label: 'Avg Daily Sales', value: `GHS ${Math.round(avgDailySales)}`, trend: 'up' },
+    { label: 'Transaction Count', value: currentData.transactions.toString(), trend: 'up' },
+    { label: 'Expense Ratio', value: `${expenseRatio}%`, trend: expenseRatio > 70 ? 'down' : 'up' },
+    { label: 'Profit Margin', value: `${profitMargin}%`, trend: profitMargin > 20 ? 'up' : 'down' }
+  ];
+}
+
+
+
 
   // Helper methods
   private calculateDailyTotals(transactions: Transaction[]): { [key: string]: { sales: number, expenses: number } } {
@@ -318,7 +361,9 @@ export class DashboardComponent implements OnInit {
 
   getProfitMargin(): number {
     const data = this.getCurrentData();
+    console.log(data)
     return data.sales > 0 ? Math.round((data.profit / data.sales) * 100) : 0;
+    
   }
 
   getExpenseRatio(): number {

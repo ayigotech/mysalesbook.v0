@@ -50,14 +50,22 @@
         </div>
 
         <!-- DateTime -->
-        <div class="input-group">
+        <!-- <div class="input-group">
             <label class="input-label">Date & Time</label>
             <div class="datetime-display" (click)="showDateTimePicker()">
                 <ion-icon name="calendar"></ion-icon>
                 <span class="datetime-text">{{expenseData.datetime | date:'MMM d, y - h:mm a'}}</span>
                 <ion-icon name="chevron-down" class="chevron"></ion-icon>
             </div>
+        </div> -->
+
+        <div class="input-group">
+            <label class="input-label">Date</label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="expenseData.datetime" (dateChange)="onDateChange($event)" placeholder="Choose date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </div>
+
 
         <!-- Category -->
         <div class="input-group">

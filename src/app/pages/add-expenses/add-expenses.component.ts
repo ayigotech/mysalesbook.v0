@@ -7,12 +7,20 @@ import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification';
 import { StorageService } from 'src/app/services/storage';
 import { TransactionType } from 'src/models';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-add-expenses',
   templateUrl: './add-expenses.component.html',
   styleUrls: ['./add-expenses.component.scss'],
-  imports: [CommonModule, IonicModule, FormsModule]
+  imports: [CommonModule, IonicModule, FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+  ],
+   providers: [ModalController] // Add this line
 })
 export class AddExpensesComponent {
   expenseData = {
@@ -102,6 +110,12 @@ export class AddExpensesComponent {
     this.expenseData.amount = amount;
     this.validateAmount();
   }
+
+
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+  // event.value is always a Date
+  this.expenseData.datetime = event.value!;
+}
 
   showDateTimePicker() {
     // In a real app, you'd use Ionic's datetime picker
