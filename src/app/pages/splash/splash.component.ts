@@ -6,7 +6,7 @@ import { IonContent, IonIcon } from "@ionic/angular/standalone";
   selector: 'app-splash',
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss'],
-  imports: [IonContent, IonIcon],
+  imports: [IonContent],
 })
 export class SplashComponent  implements OnInit {
 private router = inject(Router);

@@ -138,6 +138,7 @@
 
 .keypad-btn {
     background: rgba(255, 255, 255, 0.1);
+    background: rgba(5, 150, 104, 0.279);
     background: linear-gradient(-135deg, #2c3438 0%, #081e29 100%);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -164,7 +165,7 @@
 
 .keypad-btn.backspace {
     font-size: 1.3rem;
-    color: #bde079e1;
+    color: #ea650ce1;
 }
 
 // .keypad-empty {

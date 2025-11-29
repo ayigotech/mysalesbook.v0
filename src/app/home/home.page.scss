@@ -129,6 +129,32 @@
     box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
 }
 
+.add-fab-exp {
+    position: fixed;
+    bottom: 6rem;
+    right: 0rem;
+    left: 80%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(194, 191, 14, 0.604);
+    border: none;
+    color: rgb(15, 14, 14);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.add-fab-exp.active {
+    background: #cdd70a;
+    color: #080808;
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+}
+
 .logout:active,
 .fab:active {
     transform: scale(0.95);
@@ -140,7 +166,7 @@
 
 .summary-cards {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-bottom: 2rem;
 }

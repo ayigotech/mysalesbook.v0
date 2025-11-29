@@ -323,4 +323,8 @@ export class PasscodeComponent implements OnInit {
   async skipAuth() {
     await this.handleSuccessfulAuth();
   }
+
+toSplash(){
+  this.router.navigate(['/splash'])
+}
 }

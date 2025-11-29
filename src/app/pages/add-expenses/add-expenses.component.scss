@@ -305,7 +305,7 @@
     align-items: center;
     justify-content: space-between;
     transition: all 0.3s ease;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .category-select:active {
@@ -316,7 +316,7 @@
 .category-text {
     font-size: 0.9rem;
     font-weight: 300;
-    color: #1e293b;
+    color: #dcdfe3;
 }
 
 .category-text:not(:empty) {
@@ -326,6 +326,10 @@
 .category-text:empty::before {
     content: 'Select category';
     color: #9ca3af;
+}
+
+.ion-tit {
+    color: #dcdfe3;
 }
 
 

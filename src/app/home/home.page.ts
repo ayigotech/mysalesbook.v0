@@ -31,6 +31,7 @@ export class HomePage implements OnInit, AfterViewInit {
   
   // Real data from storage
   todaySales = 0;
+  todaySalesCount = 0;
   todayExpenses = 0;
   netProfit = 0;
   recentTransactions: Transaction[] = [];
@@ -79,6 +80,12 @@ export class HomePage implements OnInit, AfterViewInit {
       this.todaySales = transactions
         .filter(tx => tx.type === TransactionType.SALE)
         .reduce((sum, tx) => sum + tx.amount, 0);
+      
+
+      // Total number of sales
+      this.todaySalesCount = transactions
+        .filter(tx => tx.type === TransactionType.SALE)
+        .length;
       
       this.todayExpenses = transactions
         .filter(tx => tx.type === TransactionType.EXPENSE)
@@ -265,8 +272,10 @@ export class HomePage implements OnInit, AfterViewInit {
   formattedTodaySales = '';
   formattedTodayExpenses = '';
   formattedNetProfit = '';
+  formattedTodaySalesCount = 0;
 
   private formatNumbers() {
+    this.formattedTodaySalesCount = Number(this.todaySalesCount);
     this.formattedTodaySales = this.formatCurrency(this.todaySales);
     this.formattedTodayExpenses = this.formatCurrency(this.todayExpenses);
     this.formattedNetProfit = this.formatCurrency(this.netProfit);

@@ -24,6 +24,10 @@
         </div>
     </div>
 
+
+
+
+
     <!-- Quick Summary Cards -->
     <div class="summary-cards">
         <!-- Today's Sales Card -->
@@ -61,10 +65,25 @@
                 <!-- <span class="card-trend positive">+15.3%</span> -->
             </div>
         </div>
+
+
+        <!-- No. of transactions -->
+        <div class="summary-card profit-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-icon">
+                <ion-icon name="list"></ion-icon>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Sales Count Today</h3>
+                <p class="card-amount">{{formattedTodaySalesCount}}</p>
+                <!-- <span class="card-trend positive">+15.3%</span> -->
+            </div>
+        </div>
     </div>
 
+
+
     <!-- Quick Action Buttons -->
-    <div class="quick-actions" data-aos="zoom-in">
+    <!-- <div class="quick-actions" data-aos="zoom-in">
         <h2 class="section-title">Quick Actions</h2>
         <div class="action-buttons">
             <button class="action-btn" (click)="addSale()" data-aos="flip-left" data-aos-delay="100">
@@ -80,22 +99,8 @@
         </div>
         <span>Add Expense</span>
       </button>
-
-            <!-- <button class="action-btn" (click)="viewHistory()" data-aos="flip-left" data-aos-delay="300">
-        <div class="action-icon">
-          <ion-icon name="time"></ion-icon>
         </div>
-        <span>View History</span>
-      </button>
-
-     <button class="action-btn" (click)="monthlyReport()" data-aos="flip-left" data-aos-delay="400">
-        <div class="action-icon">
-          <ion-icon name="document-text"></ion-icon>
-        </div>
-        <span>Monthly Report</span>
-      </button> -->
-        </div>
-    </div>
+    </div> -->
 
     <!-- Sales Chart -->
     <div class="chart-section">
@@ -118,7 +123,7 @@
             <canvas #salesChart></canvas>
         </div>
 
-        <div class="chart-stats">
+        <!-- <div class="chart-stats">
             <div class="stat-item">
                 <span class="stat-label">Total</span>
                 <span class="stat-value">{{formatCurrency(getTotalSales())}}</span>
@@ -131,8 +136,10 @@
                 <span class="stat-label">Highest</span>
                 <span class="stat-value">{{formatCurrency(getHighestSale())}}</span>
             </div>
-        </div>
+        </div> -->
     </div>
+
+
 
     <!-- Recent Transactions -->
     <div class="recent-transactions">
@@ -188,6 +195,11 @@
 
 
     <button class="add-fab" (click)="addSale()">
+      <ion-icon name="add-outline"></ion-icon>
+    </button>
+
+
+    <button class="add-fab-exp" (click)="addExpense()">
       <ion-icon name="add-outline"></ion-icon>
     </button>
 
